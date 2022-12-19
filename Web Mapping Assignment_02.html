@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+
+<title>WEB MAP</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/html/styles.css">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+	<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 6px;
+  margin: 2.5px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button {
+  background-color: white; 
+  color: black; 
+  border: 1px solid #4CAF50;
+}
+
+.button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+h1 {
+  color: blue;
+  font-family: times;
+  font-size: 200%;
+
+}
+p  {
+  color: purple;
+  font-family: Times New Roman;
+  font-size: 100%;
+}
+p {
+  border: 2px solid powderblue;
+  padding:0px;
+  margin: 0px;
+  }
+  
+  <!--decoration of a link//<a>-->
+a:link {
+  color: green;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: blue;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+
+</style>
+    
+</head>
+
+<a href="#" style="margin-left: 40% ; font-size: 24px; font-family: 'Algerian'; color: rgb(255, 0, 0);">WEB MAP</a>
+<br>
+<a href="#" style="text-align: left; font-size: 18px; font-family: 'Times New Roman'; color: rgb(0, 0, 255);">FIND YOUR RESTAURANT LOCATION</a>
+
+<body>
+<br>
+<button onclick="typeWriter()">Click me</button>
+
+<p id="demo"></p>
+
+<script>
+var i = 0;
+var txt = 'My name is Odhiambo Samson a student from Jomo Kenyatta University persuing Barchelor of Science in Geospatial Science.';
+var speed = 30;
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("demo").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+</script>
+<br>
+<label for="start">Set up todays date</label>
+
+<input type="date" id="start" name="trip-start"
+       value="2018-07-22"
+       min="2000-01-01" max="2030-12-31">
+
+<div id="map" style="width:1500px; height:800px;"></div>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+<script>
+		
+        // Initialize the map
+        const map = L.map('map')
+      
+        // Get the tile layer from OpenStreetMaps
+		
+        L.tileLayer ('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      
+        // Specify the maximum zoom of the map
+        maxZoom: 35,
+      
+        // Set the attribution for OpenStreetMaps
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+		
+		
+		
+		var OpenStreetMap_Mapnik = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 35,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+	 var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 35,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+}).addTo(map);
+
+        // Set the view of the map
+        // with the latitude, longitude and the zoom value
+        // map.setView
+        map.setView([ 0.062629, 34.287807] , 17);
+      
+        // Show a market at the position of the Eiffel Tower
+        let eiffelMarker = L.marker([ 0.0638712, 34.2869563]).addTo(map);
+      
+        // Bind popup to the marker with a popup
+        eiffelMarker.bindPopup("Odhiambo Samson <br>03/12/2022<br>SIAYA COUNTY REFERRAL HOSPITAL").closePopup();
+
+    </script>
+            
+    </section>
+	
+	<section class="footer">
+       <div class="footer_section">
+       <style>
+        .footer_section
+		{
+            display: flex;
+            flex-direction: row;
+            row-gap: 2rem;
+            color: rgb(0, 20, 240);
+			font-family: Times New Roman;
+            list-style: none;
+            margin-top: 1.8rem;
+        }
+	
+    </style>
+       <button style="margin-right: 20% ;" onclick="window.alert('Odhiambo Samson, Leaflet Providers and OSM')"; 
+class="button button1">Contributers</button>
+
+<br>
+<button style="margin-right: 20% ;" onclick="window.alert('Odhiambo Samson')"; 
+class="button button2">Author</button> </br>
+
+<br>
+<button  style="margin-right: 20%;" onclick="window.alert('Odhiambo Samson <ENC222-0162/2019>')"; 
+class="button button3">Marginal Information</button></br>
+
+<br>
+<ul style="color: rgb(255, 0, 0);" style="margin-left: 20% ;"> &copy; &#127757; 2022 Web Mapping</ul>
+    </div>
+    
+</section>
+
+</body>
+</html>
